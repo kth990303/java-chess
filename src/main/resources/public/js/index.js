@@ -128,9 +128,7 @@ const movePiece = async () => {
     currentClickPosition = '';
     destinationClickPosition = '';
     chessMap = await chessMap.json();
-    if (chessMap.message) {
-        alert(chessMap.message);
-    }
+    await showError(chessMap.message);
     return chessMap;
 }
 
@@ -164,4 +162,12 @@ const showResult = async () => {
     result = await result.json();
     alert(result.result);
     await restartChess();
+}
+
+const showError = async (message) => {
+    if(message){
+        document.getElementById('message-info').innerHTML=message;
+        return;
+    }
+    document.getElementById('message-info').innerHTML='';
 }
